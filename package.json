@@ -10,6 +10,7 @@
   "author": "Yann",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.15.4",
     "mongoose": "^4.11.7",
     "mongoose-plugin-autoinc": "^1.1.9"

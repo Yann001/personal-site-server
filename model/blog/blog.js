@@ -27,6 +27,6 @@ const blogSchema = new Schema({
 });
 
 blogSchema.plugin(autoIncrement, { model: 'Blog', field: 'id' });
-const blog = mongoose.model('Blog', userSchema);
+const blog = mongoose.model('Blog', blogSchema);
 
 export default blog;

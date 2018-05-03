@@ -1,11 +1,12 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
+import config from '../config/config';
 
 mongoose.Promise = global.Promise;
 mongoose.set('debug', true);
 
-const uri = 'mongodb://localhost:27017/personalsite';
-
-mongoose.connect(uri, {}).then(
-  () => console.log('数据库连接成功'),
-  err => console.log('数据库链接失败: ' + err)
+mongoose.connect(config.mongodbUri, {}).then(
+  () => console.log('mongodb connect success...'),
+  err => console.log('mongodb connect error: ' + err)
 );
+
+export default mongoose.connection;

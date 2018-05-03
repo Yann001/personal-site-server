@@ -1,7 +1,15 @@
 import express from 'express';
+import bodyParser from 'body-parser';
+
+import config from './config/config';
+import db from './mongodb/connect';
 import router from './router';
 
 const app = express();
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+// parse application/json
+app.use(bodyParser.json());
 
 app.all('*', (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -14,6 +22,6 @@ app.all('*', (req, res, next) => {
 
 router(app);
 
-app.listen(3000);
+app.listen(config.port);
 
-console.info('listen port 3000');
+console.info(`listen port ${ config.port }`);

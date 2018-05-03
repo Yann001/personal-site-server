@@ -1,8 +1,9 @@
 import userModel from '../model/user/user';
 
 class User {
-  constructor () {}
-  async registry (req, res, next) {
+  constructor() { }
+  async registry(req, res, next) {
+    console.log(`post on '/user/resgistry'`);
     let
       userName = req.body.userName,
       password = req.body.password,
@@ -13,26 +14,34 @@ class User {
       password,
       nickName
     });
-
-     let ret = await model.save();
-
-     if (ret) {
-       res.json({
+    try {
+      let ret = await model.save();
+      if (ret && ret._id) {
+        res.json({
+         result: {
+           code: 200,
+           msg: 'ok'
+         },
+         data: ret
+        });
+      } else {
+        res.json({
+         result: {
+           code: 400,
+           msg: 'model save error'
+         },
+         data: ret
+        });
+      }
+    } catch (error) {
+      res.json({
         result: {
-          code: 200,
-          msg: 'ok'
-        },
-        data: ret.doc
-       });
-     } else {
-       res.json({
-        result: {
-          code: 300,
+          code: 400,
           msg: 'model save error'
         },
-        data: ret.err
+        data: error
        });
-     }
+    }
   }
 }
 
