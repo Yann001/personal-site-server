@@ -16,23 +16,13 @@ class User {
     });
     try {
       let ret = await model.save();
-      if (ret && ret._id) {
-        res.json({
-         result: {
-           code: 200,
-           msg: 'ok'
-         },
-         data: ret
-        });
-      } else {
-        res.json({
-         result: {
-           code: 400,
-           msg: 'model save error'
-         },
-         data: ret
-        });
-      }
+      res.json({
+        result: {
+          code: 200,
+          msg: 'ok'
+        },
+        data: ret
+      });
     } catch (error) {
       res.json({
         result: {

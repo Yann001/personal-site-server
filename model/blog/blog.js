@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 
 const blogSchema = new Schema({
   user: {
-    type: Number,
+    type: Schema.Types.ObjectId,
     ref: 'User'
   },
   title: String,
@@ -19,6 +19,7 @@ const blogSchema = new Schema({
     name: String
   },
   tag: Array,
+  status: Number,
   readCount: {
     type: Number,
     default: 0
